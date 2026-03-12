@@ -7,7 +7,6 @@ import { Footer } from './shared/footer/footer';
   selector: 'app-root',
   imports: [RouterOutlet, Header, Footer],
   template: `
-    <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
     <app-header></app-header>
     <router-outlet></router-outlet>
     <app-footer></app-footer>

@@ -1,6 +1,10 @@
 <article class="news-card" [attr.aria-labelledby]="'news-' + item.id">
   <div class="news-card__image-wrapper" aria-hidden="true">
-    <div class="news-card__image-placeholder">T</div>
+    @if (item.image) {
+      <img class="news-card__image" [src]="item.image" [alt]="item.title" loading="lazy">
+    } @else {
+      <div class="news-card__image-placeholder">T</div>
+    }
   </div>
   <div class="news-card__body">
     <div class="news-card__meta">

@@ -22,25 +22,32 @@ export class TajamarData {
   readonly news: NewsItem[] = [
     { id: 'n1', title: 'Tajamar, mejor colegio de FP TIC de Madrid en 2026', category: 'fp', date: '2026-02-18',
       excerpt: 'El Colegio Tajamar ha recibido el reconocimiento como mejor centro de FP TIC de la Comunidad de Madrid.',
-      href: '/noticia-alumni-lab' },
+      href: '/noticia-alumni-lab',
+      image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80' },
     { id: 'n2', title: 'Nuevas instalaciones: laboratorio de alta tecnología inaugurado', category: 'institucional', date: '2026-01-30',
       excerpt: 'El nuevo laboratorio de electrónica y robótica del edificio de FP+ ha sido inaugurado.',
-      href: '/noticia-alumni-lab' },
+      href: '/noticia-alumni-lab',
+      image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80' },
     { id: 'n3', title: 'Alumnos de Tajamar ganan el Hackathon Madrid Educa 2024', category: 'logros', date: '2024-11-10',
       excerpt: 'El equipo de DAW del Colegio Tajamar se alzó con el primer puesto en la categoría «Aplicaciones Web Responsivas».',
-      href: '/noticias' },
+      href: '/noticias',
+      image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80' },
     { id: 'n4', title: 'Tajamar renueva el certificado de excelencia Cambridge English Assessment', category: 'logros', date: '2024-10-05',
       excerpt: 'El colegio supera con éxito la auditoria anual de Cambridge Assessment y mantiene el reconocimiento como Cambridge English School.',
-      href: '/bilinguismo' },
+      href: '/bilinguismo',
+      image: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600&q=80' },
     { id: 'n5', title: 'Jornada de puertas abiertas – 15 de febrero de 2025', category: 'admisiones', date: '2025-01-20',
       excerpt: 'Ven a conocer Tajamar por dentro. El 15 de febrero abrimos las puertas con guía personal.',
-      href: '/noticia-admisiones' },
+      href: '/noticia-admisiones',
+      image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80' },
     { id: 'n6', title: 'Proyecto solidario: alumnos de Secundaria recaudan más de 4.000 € para Cáritas', category: 'actividades', date: '2024-09-30',
       excerpt: 'El mercadillo solidario organizado por 3.º y 4.º de ESO reunió más de 4.000 euros en beneficio de Cáritas Madrid.',
-      href: '/noticias' },
+      href: '/noticias',
+      image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=600&q=80' },
     { id: 'n7', title: 'Reflejos literarios: publicación del anuario Tajamar 2024', category: 'actividades', date: '2024-11-22',
       excerpt: 'El anuario literario del colegio, con relatos, poemas y ensayos de alumnos, ya está disponible.',
-      href: '/noticia-reflejos' }
+      href: '/noticia-reflejos',
+      image: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=600&q=80' }
   ];
 
   readonly stats: Stat[] = [
@@ -51,12 +58,12 @@ export class TajamarData {
   ];
 
   readonly program: Program[] = [
-    { id: 'prog-1', icon: '', title: 'Proyecto Educativo',   desc: '¿Quieres saber cuál es nuestra clave? La confianza plena entre padres, profesores y alumnos.', href: '/proyecto-educativo', cta: 'Leer más' },
-    { id: 'prog-2', icon: '', title: 'Single Sex Education', desc: 'Defendemos la enseñanza diferenciada por sexos. We\'re for anyone, not for everyone.',         href: '/single-sex',        cta: 'Leer más' },
-    { id: 'prog-3', icon: '', title: 'iPad Tajamar',         desc: 'En Tajamar apostamos por las nuevas tecnologías y te enseñamos a navegar con seguridad.',    href: '/ipad',              cta: 'Leer más' },
-    { id: 'prog-4', icon: '', title: 'Becas y Ayudas',       desc: 'Queremos que la economía no sea un problema en la formación de tu hijo.',                   href: '/becas',             cta: 'Leer más' },
-    { id: 'prog-5', icon: '', title: 'Alumni',               desc: '15.653 antiguos alumnos son 15.653 razones para estudiar en Tajamar.',                       href: '/alumni',            cta: 'Leer más' },
-    { id: 'prog-6', icon: '', title: 'AMPA',                 desc: 'Las madres y padres son el corazón del colegio. Forma parte de él.',                         href: '/ampa',              cta: 'Leer más' }
+    { id: 'prog-1', icon: '🎯', title: 'Proyecto Educativo',   desc: '¿Quieres saber cuál es nuestra clave? La confianza plena entre padres, profesores y alumnos.', href: '/proyecto-educativo', cta: 'Leer más' },
+    { id: 'prog-2', icon: '⚖️', title: 'Single Sex Education', desc: 'Defendemos la enseñanza diferenciada por sexos. We\'re for anyone, not for everyone.',         href: '/single-sex',        cta: 'Leer más' },
+    { id: 'prog-3', icon: '📱', title: 'iPad Tajamar',         desc: 'En Tajamar apostamos por las nuevas tecnologías y te enseñamos a navegar con seguridad.',    href: '/ipad',              cta: 'Leer más' },
+    { id: 'prog-4', icon: '🎓', title: 'Becas y Ayudas',       desc: 'Queremos que la economía no sea un problema en la formación de tu hijo.',                   href: '/becas',             cta: 'Leer más' },
+    { id: 'prog-5', icon: '🤝', title: 'Alumni',               desc: '15.653 antiguos alumnos son 15.653 razones para estudiar en Tajamar.',                       href: '/alumni',            cta: 'Leer más' },
+    { id: 'prog-6', icon: '👨‍👩‍👧', title: 'AMPA',                 desc: 'Las madres y padres son el corazón del colegio. Forma parte de él.',                         href: '/ampa',              cta: 'Leer más' }
   ];
 
   readonly secretaria: SecretariaItem[] = [

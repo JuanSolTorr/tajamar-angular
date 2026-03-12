@@ -24,6 +24,7 @@ export interface NewsItem {
   date: string;
   excerpt: string;
   href: string;
+  image?: string;
 }
 
 export interface Stat {
