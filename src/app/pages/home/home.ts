@@ -1,8 +1,12 @@
 import { Component, inject, AfterViewInit, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { TajamarData } from '../../core/tajamar-data';
 import { HeroSlider } from '../../shared/hero-slider/hero-slider';
 import { NewsCard } from '../../shared/news-card/news-card';
+import { ApiService } from '../../core/api.service';
+import { NewsItem } from '../../core/models';
 
 @Component({
   selector: 'app-home',
@@ -11,11 +15,44 @@ import { NewsCard } from '../../shared/news-card/news-card';
   styleUrl: './home.css',
 })
 export class Home implements AfterViewInit {
+  private api = inject(ApiService);
   data = inject(TajamarData);
 
   @ViewChildren('statEl') statEls!: QueryList<ElementRef<HTMLElement>>;
 
+  recentNews = toSignal(
+    this.api.getNoticias().pipe(
+      map(ns => ns.slice(0, 3).map(n => ({
+        id: String(n.id),
+        title: n.title,
+        category: n.category,
+        date: n.date,
+        excerpt: n.excerpt,
+        href: n.href,
+        image: n.image
+      } as NewsItem)))
+    ),
+    { initialValue: [] as NewsItem[] }
+  );
+
+  stats = toSignal(
+    this.api.getStats(),
+    { initialValue: [] as { value: number; suffix: string; label: string }[] }
+  );
+
   ngAfterViewInit(): void {
+    // Se ejecuta cuando los elementos carguen desde la API
+    this.statEls.changes.subscribe(() => {
+      if (this.statEls.length > 0) {
+        this.setupCounterAnimation();
+      }
+    });
+    if (this.statEls.length > 0) {
+      this.setupCounterAnimation();
+    }
+  }
+
+  private setupCounterAnimation(): void {
     if (!('IntersectionObserver' in window)) {
       this.statEls.forEach(el => {
         const target = Number(el.nativeElement.dataset['target']);
@@ -45,10 +82,6 @@ export class Home implements AfterViewInit {
       if (current < target) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
-  }
-
-  recentNews() {
-    return this.data.news.slice(0, 3);
   }
 }
 

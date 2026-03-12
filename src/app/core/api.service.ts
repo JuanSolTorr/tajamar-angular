@@ -11,6 +11,7 @@ export interface Noticia {
   excerpt: string;
   body: string;
   href: string;
+  image?: string;
 }
 
 export interface ContactoPayload {
@@ -61,8 +62,8 @@ export class ApiService {
   }
 
   // --- Stats ---
-  getStats(): Observable<{ value: string; label: string }[]> {
-    return this.http.get<{ value: string; label: string }[]>(`${this.base}/stats`);
+  getStats(): Observable<{ value: number; suffix: string; label: string }[]> {
+    return this.http.get<{ value: number; suffix: string; label: string }[]>(`${this.base}/stats`);
   }
 
   // --- Helper para peticiones autenticadas ---

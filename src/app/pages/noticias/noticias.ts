@@ -1,7 +1,10 @@
 import { Component, inject, signal, computed } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 import { RouterLink } from '@angular/router';
-import { TajamarData } from '../../core/tajamar-data';
 import { NewsCard } from '../../shared/news-card/news-card';
+import { ApiService } from '../../core/api.service';
+import { NewsItem } from '../../core/models';
 
 @Component({
   selector: 'app-noticias',
@@ -10,7 +13,7 @@ import { NewsCard } from '../../shared/news-card/news-card';
   styleUrl: './noticias.css',
 })
 export class Noticias {
-  data = inject(TajamarData);
+  private api = inject(ApiService);
 
   readonly categories = [
     { id: 'all', label: 'Todas' },
@@ -23,11 +26,26 @@ export class Noticias {
 
   activeFilter = signal('all');
 
-  filteredNews = computed(() =>
-    this.activeFilter() === 'all'
-      ? this.data.news
-      : this.data.news.filter(n => n.category === this.activeFilter())
+  private allNews = toSignal(
+    this.api.getNoticias().pipe(
+      map(ns => ns.map(n => ({
+        id: String(n.id),
+        title: n.title,
+        category: n.category,
+        date: n.date,
+        excerpt: n.excerpt,
+        href: n.href,
+        image: n.image
+      } as NewsItem)))
+    ),
+    { initialValue: [] as NewsItem[] }
   );
+
+  filteredNews = computed(() => {
+    const news = this.allNews();
+    const filter = this.activeFilter();
+    return filter === 'all' ? news : news.filter(n => n.category === filter);
+  });
 
   setFilter(id: string): void {
     this.activeFilter.set(id);

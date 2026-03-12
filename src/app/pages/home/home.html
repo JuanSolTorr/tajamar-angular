@@ -73,7 +73,7 @@
   <div class="container">
     <h2 class="sr-only" id="stats-title">Tajamar en cifras</h2>
     <div class="stats__grid">
-      @for (stat of data.stats; track stat.id) {
+      @for (stat of stats(); track stat.label) {
         <div class="stat">
           <span class="stat__number" #statEl [attr.data-target]="stat.value">0</span>
           <span class="stat__suffix">{{ stat.suffix }}</span>
