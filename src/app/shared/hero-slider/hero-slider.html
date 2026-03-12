@@ -1,0 +1,49 @@
+<section class="hero" aria-label="Presentación principal"
+  (mouseenter)="pause()" (mouseleave)="resume()"
+  (focusin)="pause()" (focusout)="resume()"
+  (keydown)="onKey($event)">
+
+  <div class="hero__slider" role="region" aria-roledescription="carrusel" aria-label="Destacados">
+    <div class="hero__track" [style.transform]="'translateX(-' + current() * 100 + '%)'"
+         (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
+
+      @for (slide of slides; track slide.href; let i = $index) {
+        <article class="hero__slide" [class]="slide.cssClass"
+                 role="group" aria-roledescription="diapositiva"
+                 [attr.aria-label]="'Slide ' + (i+1) + ' de ' + slides.length"
+                 [attr.aria-current]="i === current() ? 'step' : null">
+          <div class="hero__overlay" aria-hidden="true"></div>
+          <div class="container hero__content">
+            <span class="hero__label">{{ slide.label }}</span>
+            <h1 class="hero__title">{{ slide.title }}<br><em>{{ slide.titleEm }}</em></h1>
+            <p class="hero__subtitle">{{ slide.subtitle }}</p>
+            <a [routerLink]="slide.href" class="btn btn--hero">{{ slide.cta }}</a>
+          </div>
+        </article>
+      }
+    </div>
+
+    <div class="hero__controls" aria-label="Controles del carrusel">
+      <button class="hero__btn hero__btn--prev" aria-label="Diapositiva anterior"
+              (click)="prev(); stopAuto(); startAuto()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+
+      <div class="hero__dots" role="tablist" aria-label="Navegar por diapositivas">
+        @for (slide of slides; track slide.href; let i = $index) {
+          <button class="hero__dot" [class.is-active]="i === current()"
+                  role="tab" [attr.aria-selected]="i === current()"
+                  [attr.aria-label]="'Ir a diapositiva ' + (i+1)"
+                  (click)="goTo(i); stopAuto(); startAuto()">
+          </button>
+        }
+      </div>
+
+      <button class="hero__btn hero__btn--next" aria-label="Siguiente diapositiva"
+              (click)="next(); stopAuto(); startAuto()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+

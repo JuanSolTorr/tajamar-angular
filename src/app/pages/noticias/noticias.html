@@ -1,0 +1,38 @@
+<main class="page" aria-labelledby="noticias-title">
+  <nav class="breadcrumb" aria-label="Ruta de navegación">
+    <ol class="breadcrumb__list">
+      <li class="breadcrumb__item"><a routerLink="/" class="breadcrumb__link">Inicio</a></li>
+      <li class="breadcrumb__item" aria-current="page">Noticias</li>
+    </ol>
+  </nav>
+
+  <div class="page-hero page-hero--noticias">
+    <div class="container">
+      <h1 class="page-hero__title" id="noticias-title">Noticias</h1>
+      <p class="page-hero__subtitle">Toda la actualidad del Colegio Tajamar.</p>
+    </div>
+  </div>
+
+  <div class="container page__body">
+    <!-- FILTROS -->
+    <div class="filter-bar" role="group" aria-label="Filtrar noticias por categoría">
+      @for (cat of categories; track cat.id) {
+        <button class="filter-btn" [class.is-active]="activeFilter() === cat.id"
+                (click)="setFilter(cat.id)"
+                [attr.aria-pressed]="activeFilter() === cat.id">
+          {{ cat.label }}
+        </button>
+      }
+    </div>
+
+    <!-- GRID -->
+    <div class="news__grid" aria-live="polite" aria-label="Noticias filtradas">
+      @for (item of filteredNews(); track item.id) {
+        <app-news-card [item]="item"></app-news-card>
+      } @empty {
+        <p class="news__empty">No hay noticias en esta categoría todavía.</p>
+      }
+    </div>
+  </div>
+</main>
+

@@ -1,0 +1,137 @@
+<!-- HERO SLIDER -->
+<app-hero-slider></app-hero-slider>
+
+<!-- HIGHLIGHTS / ACCESOS RÁPIDOS -->
+<section class="highlights section" aria-labelledby="highlights-title">
+  <div class="container">
+    <h2 class="sr-only" id="highlights-title">Accesos rápidos</h2>
+    <div class="highlights__grid">
+      @for (item of data.highlights; track item.href) {
+        <a [routerLink]="item.href" class="highlight-card" [class]="item.colorClass">
+          <span class="highlight-card__icon" aria-hidden="true">{{ item.icon }}</span>
+          <h3 class="highlight-card__title">{{ item.title }}</h3>
+          <p class="highlight-card__desc">{{ item.desc }}</p>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA EDUCATIVA -->
+<section class="oferta section section--alt" aria-labelledby="oferta-title">
+  <div class="container">
+    <header class="section__header">
+      <h2 class="section__title" id="oferta-title">Oferta educativa</h2>
+      <p class="section__subtitle">Desde Infantil hasta Formación Profesional, una educación integral y de calidad.</p>
+    </header>
+    <div class="oferta__grid">
+      @for (item of data.oferta; track item.href) {
+        <a [routerLink]="item.href" class="oferta-card">
+          <div class="oferta-card__image oferta-card__image--{{ item.id }}" aria-hidden="true"></div>
+          <div class="oferta-card__body">
+            <h3 class="oferta-card__title">{{ item.title }}</h3>
+            <p class="oferta-card__ages">{{ item.ages }}</p>
+            <p class="oferta-card__desc">{{ item.desc }}</p>
+            <span class="oferta-card__cta">Más información</span>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- NOTICIAS RECIENTES -->
+<section class="news section" aria-labelledby="news-title">
+  <div class="container">
+    <header class="section__header">
+      <h2 class="section__title" id="news-title">Últimas noticias</h2>
+    </header>
+    <div class="news__grid">
+      @for (item of recentNews(); track item.id) {
+        <app-news-card [item]="item"></app-news-card>
+      }
+    </div>
+    <div class="section__footer">
+      <a routerLink="/noticias" class="btn btn--outline">Ver todas las noticias</a>
+    </div>
+  </div>
+</section>
+
+<!-- BANNER BILINGÜISMO -->
+<section class="banner-bilingual section" aria-label="Proyecto bilingüe">
+  <div class="container">
+    <h2 class="banner-bilingual__title">Bilingüismo real desde Infantil</h2>
+    <p class="banner-bilingual__desc">
+      Metodología CLIL, profesores nativos y un entorno totalmente en inglés para que tus hijos crezcan en dos idiomas.
+    </p>
+    <a routerLink="/bilinguismo" class="btn btn--accent">Conoce nuestro proyecto bilingüe</a>
+  </div>
+</section>
+
+<!-- ESTADÍSTICAS -->
+<section class="stats section" aria-labelledby="stats-title">
+  <div class="container">
+    <h2 class="sr-only" id="stats-title">Tajamar en cifras</h2>
+    <div class="stats__grid">
+      @for (stat of data.stats; track stat.id) {
+        <div class="stat">
+          <span class="stat__number" #statEl [attr.data-target]="stat.value">0</span>
+          <span class="stat__suffix">{{ stat.suffix }}</span>
+          <span class="stat__label">{{ stat.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMA EDUCATIVO -->
+<section class="program section section--alt" aria-labelledby="program-title">
+  <div class="container">
+    <header class="section__header">
+      <h2 class="section__title" id="program-title">Nuestro proyecto educativo</h2>
+    </header>
+    <div class="program__grid">
+      @for (item of data.program; track item.id) {
+        <div class="program-card">
+          <div class="program-card__icon" aria-hidden="true">{{ item.icon }}</div>
+          <h3 class="program-card__title">{{ item.title }}</h3>
+          <p class="program-card__desc">{{ item.desc }}</p>
+        </div>
+      }
+    </div>
+    <div class="section__footer">
+      <a routerLink="/proyecto-educativo" class="btn btn--primary">Ver proyecto educativo completo</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECRETARÍA / CTA -->
+<section class="secretaria section" aria-labelledby="secretaria-title">
+  <div class="container">
+    <header class="section__header">
+      <h2 class="section__title" id="secretaria-title">Secretaría</h2>
+      <p class="section__subtitle">Te ayudamos en todos los trámites necesarios.</p>
+    </header>
+    <div class="secretaria__grid">
+      @for (item of data.secretaria; track item.id) {
+        <a [routerLink]="item.href" class="secretaria-card">
+          <h3 class="secretaria-card__title">{{ item.title }}</h3>
+          <p class="secretaria-card__desc">{{ item.desc }}</p>
+          <span class="secretaria-card__link">{{ item.link }}</span>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS / LOGOS -->
+<section class="partners section" aria-label="Colaboradores y certificaciones">
+  <div class="container">
+    <div class="partners__ticker" aria-label="Logos de organizaciones colaboradoras">
+      @for (p of data.partners; track p.name) {
+        <div class="partners__item" [attr.title]="p.name" aria-label="{{ p.name }}">{{ p.abbr }}</div>
+      }
+    </div>
+  </div>
+</section>
+

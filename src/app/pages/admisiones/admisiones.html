@@ -1,0 +1,121 @@
+<main class="page" aria-labelledby="admisiones-title">
+  <nav class="breadcrumb" aria-label="Ruta de navegación">
+    <ol class="breadcrumb__list">
+      <li class="breadcrumb__item"><a routerLink="/" class="breadcrumb__link">Inicio</a></li>
+      <li class="breadcrumb__item" aria-current="page">Admisiones</li>
+    </ol>
+  </nav>
+
+  <div class="page-hero page-hero--admisiones">
+    <div class="container">
+      <h1 class="page-hero__title" id="admisiones-title">Proceso de admisión</h1>
+      <p class="page-hero__subtitle">Te acompañamos en cada paso para que tu hijo empiece su camino en Tajamar.</p>
+    </div>
+  </div>
+
+  <div class="container page__body">
+    <section class="page-section" aria-labelledby="proceso-title">
+      <h2 class="page-section__title" id="proceso-title">Cómo es el proceso</h2>
+      <ol class="steps-list">
+        <li class="steps-list__item">Solicitud de información y visita al colegio.</li>
+        <li class="steps-list__item">Entrega de documentación y solicitud de admisión.</li>
+        <li class="steps-list__item">Entrevista con el equipo directivo y familiar.</li>
+        <li class="steps-list__item">Resolución y comunicación de plaza.</li>
+        <li class="steps-list__item">Formalización de la matrícula.</li>
+      </ol>
+    </section>
+
+    <section class="page-section" aria-labelledby="form-title">
+      <h2 class="page-section__title" id="form-title">Solicita información</h2>
+
+      @if (success()) {
+        <div class="form-success" role="alert">
+          <strong>Solicitud enviada correctamente.</strong> Nos pondremos en contacto contigo en breve.
+        </div>
+      } @else {
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="nombre">Nombre <span aria-hidden="true">*</span></label>
+              <input id="nombre" type="text" class="form-control" formControlName="nombre"
+                     [class.is-invalid]="fieldError('nombre')" autocomplete="given-name">
+              @if (fieldError('nombre')) {
+                <span class="form-error">Introduce un nombre válido.</span>
+              }
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="apellidos">Apellidos <span aria-hidden="true">*</span></label>
+              <input id="apellidos" type="text" class="form-control" formControlName="apellidos"
+                     [class.is-invalid]="fieldError('apellidos')" autocomplete="family-name">
+              @if (fieldError('apellidos')) {
+                <span class="form-error">Introduce los apellidos.</span>
+              }
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="email">Correo electrónico <span aria-hidden="true">*</span></label>
+              <input id="email" type="email" class="form-control" formControlName="email"
+                     [class.is-invalid]="fieldError('email')" autocomplete="email">
+              @if (fieldError('email')) {
+                <span class="form-error">Introduce un correo válido.</span>
+              }
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="telefono">Teléfono</label>
+              <input id="telefono" type="tel" class="form-control" formControlName="telefono" autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="etapa">Etapa de interés <span aria-hidden="true">*</span></label>
+              <select id="etapa" class="form-control" formControlName="etapa"
+                      [class.is-invalid]="fieldError('etapa')">
+                <option value="">Selecciona una etapa</option>
+                <option value="infantil">Educación Infantil (3-6 años)</option>
+                <option value="primaria">Educación Primaria (6-12 años)</option>
+                <option value="secundaria">Educación Secundaria Obligatoria</option>
+                <option value="bachillerato">Bachillerato</option>
+                <option value="fp">Formación Profesional</option>
+              </select>
+              @if (fieldError('etapa')) {
+                <span class="form-error">Selecciona una etapa.</span>
+              }
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="curso">Curso</label>
+              <input id="curso" type="text" class="form-control" formControlName="curso"
+                     placeholder="Ej. 1º Primaria">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="mensaje">Mensaje</label>
+            <textarea id="mensaje" class="form-control" formControlName="mensaje" rows="4"
+                      placeholder="Escribe aquí tus preguntas o comentarios..."></textarea>
+          </div>
+
+          <div class="form-group form-group--check">
+            <label class="form-check">
+              <input type="checkbox" class="form-check__input" formControlName="privacidad"
+                     [class.is-invalid]="fieldError('privacidad')">
+              <span class="form-check__label">
+                He leído y acepto la
+                <a routerLink="/privacidad" class="form-check__link">Política de privacidad</a>.
+                <span aria-hidden="true"> *</span>
+              </span>
+            </label>
+            @if (fieldError('privacidad')) {
+              <span class="form-error">Debes aceptar la política de privacidad.</span>
+            }
+          </div>
+
+          <button type="submit" class="btn btn--primary">Enviar solicitud</button>
+        </form>
+      }
+    </section>
+  </div>
+</main>
+
