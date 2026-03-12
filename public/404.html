@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Colegio Tajamar</title>
+  <script>
+    // SPA redirect trick for GitHub Pages
+    // Saves the full URL in sessionStorage and redirects to the root index.html
+    sessionStorage.redirect = location.href;
+    var base = location.pathname.split('/').slice(0, 2).join('/');
+    location.replace(base + '/');
+  </script>
+</head>
+<body></body>
+</html>

@@ -50,10 +50,6 @@
               }
             ],
             "styles": [
-              "../tajamar_web/css/tokens.css",
-              "../tajamar_web/css/main.css",
-              "../tajamar_web/css/components.css",
-              "../tajamar_web/css/page.css",
               "src/styles.css"
             ]
           },
